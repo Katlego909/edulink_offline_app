@@ -1,0 +1,40 @@
+<!-- accounts/templates/accounts/signup.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .form-card {
+            width: 300px;
+            padding: 2rem;
+            background: #ccc;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="form-card">
+
+        <h2>Sign Up</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'signin' %}">Sign in here</a></p>
+    </div>
+</body>
+</html>

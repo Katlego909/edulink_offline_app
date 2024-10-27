@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" href="/static/images/icons/icon-192x192.png" sizes="192x192">
+    <link rel="icon" href="/static/images/icons/icon-512x512.png" sizes="512x512">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <title>Course List</title>
+</head>
+<body>
+    <header>
+        <h1>EduLink</h1>
+        <nav>
+            <ul>
+                <li><a href="/courses/">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Available Courses</h2>
+        <ul>
+            <li>No courses available.</li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 EduLink</p>
+    </footer>
+
+    <!-- Register the service worker -->
+     
+    <script>
+        if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/static/sw.js') // Adjust the path to your service worker
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+    });
+}
+    </script>
+</body>
+</html>

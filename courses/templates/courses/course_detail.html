@@ -1,0 +1,76 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }}</title>
+</head>
+<body>
+    <img src="{{ course.display_image }}" alt="{{ course.title }}" style="width:200px; height:auto;">
+    <h1>{{ course.title }}</h1>
+    <p>{{ course.description }}</p>
+
+    {% if user.is_authenticated %}
+        {% if enrolled %}
+            <form action="{% url 'unenroll_course' course.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Unenroll from Course</button>
+            </form>
+        {% else %}
+            <form action="{% url 'enroll_course' course.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Enroll in Course</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p>You must be logged in to enroll in this course. <a href="{% url 'signin' %}">Log in</a></p>
+    {% endif %}
+
+    <h2>Lessons</h2>
+    {% if enrolled %}
+        <ul>
+            {% for lesson in lessons %}
+                <li>
+                    <a href="{% url 'lesson_detail' course.id lesson.id %}">{{ lesson.title }}</a>
+                    <p>{{ lesson.text_content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Show the Mark as Complete button if 2 or more lessons have been viewed -->
+        {% if viewed_lessons_count >= 2 %}
+            <form action="{% url 'mark_course_complete' course.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Mark as Complete</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p>You must enroll in this course to access the lessons.</p>
+    {% endif %}
+
+    
+
+    <!-- Additional content about the course -->
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('/courses/course/{{ course.id }}/')
+            .then(response => response.json())
+            .then(data => {
+                // Process and display the course data
+                console.log(data);
+            })
+            .catch(error => console.error('Error fetching course data:', error));
+    });
+</script>
+
+</html>
+
+
+
+{% endblock content %}

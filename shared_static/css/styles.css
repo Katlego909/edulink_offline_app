@@ -1,0 +1,72 @@
+        
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 0.80rem;
+        }
+
+        .header {
+            background: #ccc;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.5rem;
+            border: none;
+            background: #fff;
+            border-radius: 0.2rem;
+        }
+
+        .btn-logout {
+            color: #fff;
+            background: blue;
+        }
+
+        .heading {
+            margin: 2rem auto;
+        }
+
+        /* Courses */
+
+        .all-courses  {
+            background: #ccc;
+            padding: 1rem 2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+        }
