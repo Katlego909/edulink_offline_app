@@ -17,8 +17,12 @@
             font-size: 0.80rem;
         }
 
+        .logo-img {
+            height: 45px;
+        }
+
         .header {
-            background: #ccc;
+            background: #e7e7e7;
         }
 
         .nav {
@@ -45,11 +49,17 @@
             border: none;
             background: #fff;
             border-radius: 0.2rem;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            color: #fff;
+            background-color: #007bff;
         }
 
         .btn-logout {
             color: #fff;
-            background: blue;
+            background-color: #007bff;
         }
 
         .heading {
@@ -68,5 +78,10 @@
             .container {
                 padding: 0 1.5rem;
             }
+
+            .logo-img {
+                height: 35px;
+            }
+    
 
         }

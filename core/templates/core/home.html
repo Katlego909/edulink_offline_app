@@ -1,10 +1,317 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %}Home{% endblock title %}
+{% block title %}Home | {% endblock title %}
 {% block content %}
 
-    <h1 class="heading">Welcome to MyPWA</h1>
-    <a href="/courses/" class="all-courses" >Courses</a>
+<style>
+    * {
+        box-sizing: border-box;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        height: 100%;
+        background-color: #f4f6f8;
+        margin: 0;
+    }
+
+    .heading {
+        font-size: 3rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+    }
+
+    #hero {
+        margin: 4rem 0;
+    }
+
+    .hero-grid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .hero-image {
+        height: 385px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .all-courses {
+        display: inline-block;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        color: #ffffff;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin-top: 2rem;
+    }
+
+    .all-courses:hover {
+        background-color: #0056b3;
+    }
+
+    .description {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: #555;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+
+ 
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
+        gap: 10px;
+        max-width: 1100px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #features {
+        margin: 40px 0;
+    }
+
+    .card {
+        padding: 40px;
+        background: #fefefe;
+    }
+
+    .card img {
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        margin-bottom: 20px;
+    }
+
+    .card p {
+        font-size: 0.90rem;
+        color: #555;; 
+    }
+
+    #cta {
+        background-color: #007bff;
+        color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+        margin: 60px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-heading {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .cta-text {
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #ff8c00;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #e07b00;
+        transform: scale(1.05);
+    }
+
+    #footer {
+        background-color: #1e293b;
+        color: #f1f5f9;
+        padding: 40px 20px;
+        font-size: 1rem;
+        margin-bottom: 20px; /* Space below the footer */
+        border-radius: 15px 15px 0 0; /* Only top left and right corners */
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-grid {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .footer-logo {
+        max-width: 300px;
+    }
+
+    .footer-logo p {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+
+    .footer-contact h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    .footer-contact p {
+        color: #cbd5e1;
+        margin-bottom: 8px;
+    }
+
+    .footer-contact a {
+        color: #38bdf8;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-contact a:hover {
+        color: #0ea5e9;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 30px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+    }
+
+    .logo-image {
+        width: 150px;
+        height: auto;
+        filter: brightness(0) invert(1);
+    }
+    
+    @media screen and (max-width: 768px) { 
+
+        #hero {
+            margin: 2rem 0;
+        }
+
+        .hero-grid {
+            display: block;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+
+        .footer-grid {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-contact,
+        .footer-logo {
+            max-width: 100%;
+        }
+    
+    }
+
+</style>
+
+<section id="hero">
+    <div class="hero-grid">
+        <div class="hero-content">
+            <h1 class="heading" >Offline-first <br> <span>E-learning Platform</span> </h1>
+            <p class="description" >At Edulink E-Learning, we're on a mission to revolutionize the way education and training are delivered across Africa.</p>
+            <a href="/courses/" class="all-courses">Browse All Courses</a>
+        </div>
+        <div>
+            <img src="/static/images/header.webp" class="hero-image"  alt="">
+        </div>
+    </div>
+</section>
+
+
+<section id="features">
+    <div class="features-grid">
+        <div class="feature-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="" alt="icon" class="icon">
+                    <h2>Feature 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                </div>
+                <div class="card">
+                    <img src="" alt="icon" class="icon">
+                    <h2>Feature 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                </div>
+                <div class="card">
+                    <img src="" alt="icon" class="icon">
+                    <h2>Feature 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                </div>
+                <div class="card">
+                    <img src="" alt="icon" class="icon">
+                    <h2>Feature 1</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cta">
+    <div class="cta-content">
+        <h2 class="cta-heading">Join the Future of Learning Today</h2>
+        <p class="cta-text">Become a part of Edulink E-Learning and gain access to industry-leading courses designed for practical skills in Africa's growing market.</p>
+        <a href="{% url 'signup' %}" class="cta-button">Get Started</a>
+    </div>
+</section>
+
+
+<section id="footer">
+    <div class="footer-content">
+        <div class="footer-grid">
+            <!-- Logo and Description -->
+            <div class="footer-logo">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo-image">
+                <p>Edulink E-Learning - Empowering Africa through accessible education and skills training.</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@edulink.com">support@edulink.co.za</a></p>
+                <p>Phone: <a href="tel:+1234567890">+123 456 7890</a></p>
+                <p>Address: Pretoria, South Africa</p>
+            </div>
+        </div>
+        <p class="footer-bottom">&copy; {{ current_year }} Edulink E-Learning. All rights reserved.</p>
+    </div>
+</section>
+
 
 {% endblock content %}
-

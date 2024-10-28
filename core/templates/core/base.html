@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-
 {% load static %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {% block title %}{% endblock title %} | Edulink E-learning</title>
+    <title> {% block title %}{% endblock title %} Edulink E-learning</title>
     <link rel="manifest" href="{% static 'manifest.json' %}">
     <link rel="stylesheet" href="/static/css/styles.css">
     <script>
@@ -31,8 +29,16 @@
 
         <div class="nav">
                 <div class="logo">
-                    <h1><a href="{% url 'home' %}">Edulink</a></h1>
+                    <a href="{% url 'home' %}">
+                        <img src="/static/images/logo.svg" class="logo-img" alt="">
+                    </a>
                 </div>
+{% comment %} 
+                <div class="nav-links">
+                        <a href="{% url 'course_list' %}">Courses</a>
+                        <a href="{% url 'course_list' %}">Categories</a>
+                </div> {% endcomment %}
+
                 <div class="buttons">
     
                     {% if request.user.is_authenticated %}
@@ -61,7 +67,6 @@
         {% endblock  %}
     </div>
 
-    
     
 </body>
 </html>

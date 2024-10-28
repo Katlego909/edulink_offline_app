@@ -1,5 +1,5 @@
 {% extends "core/base.html" %}
-
+{% block title %} {{ lesson.title }} | {% endblock title %}
 {% block content %}
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
             text-align: center;
             border-radius: 10px;
             margin: 20px auto 20px;
-            max-width: 800px;
+            max-width: 1100px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         main {
@@ -120,7 +120,7 @@
                 <li>
                     <h3 class="resource-heading">{{ chapter.title }}</h3>
                     <p>{{ chapter.text_content }}</p>
-
+                    
                     <!-- Display YouTube video if available -->
                     {% if chapter.video_url %}
                         <div class="video-container">

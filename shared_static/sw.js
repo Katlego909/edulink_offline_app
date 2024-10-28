@@ -5,7 +5,7 @@ const urlsToCache = [
     '/static/images/icons/icon-512x512.png',
     '/static/manifest.json',
     '/static/css/styles.css',
-    '/offline.html' // Add your offline page here
+    '/offline.html', // Add your offline page here// Add your offline page here
 ];
 
 // Install event to cache resources
