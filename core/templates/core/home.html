@@ -65,6 +65,18 @@
         line-height: 1.5;
     }
 
+    #features {
+        margin: 40px 0;
+    }
+
+    .feature-heading {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .icon {
+        height: 50px;
+    }
  
     .cards-grid {
         display: grid;
@@ -73,10 +85,6 @@
         max-width: 1100px;
         width: 100%;
         margin-bottom: 20px;
-    }
-
-    #features {
-        margin: 40px 0;
     }
 
     .card {
@@ -89,6 +97,7 @@
     }
 
     .card h2 {
+        font-size: 1.2rem;
         margin-bottom: 20px;
     }
 
@@ -103,7 +112,7 @@
         padding: 60px 20px;
         text-align: center;
         margin: 60px 0;
-        border-radius: 10px;
+        border-radius: 15px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
@@ -141,7 +150,7 @@
     #footer {
         background-color: #1e293b;
         color: #f1f5f9;
-        padding: 40px 20px;
+        padding: 40px;
         font-size: 1rem;
         margin-bottom: 20px; /* Space below the footer */
         border-radius: 15px 15px 0 0; /* Only top left and right corners */
@@ -243,12 +252,12 @@
 <section id="hero">
     <div class="hero-grid">
         <div class="hero-content">
-            <h1 class="heading" >Offline-first <br> <span>E-learning Platform</span> </h1>
-            <p class="description" >At Edulink E-Learning, we're on a mission to revolutionize the way education and training are delivered across Africa.</p>
+            <h1 class="heading" >Empower Your Learning Anytime, Anywhere</h1>
+            <p class="description" >Unleash the potential of education with our offline-first platform that keeps you connected to knowledge, regardless of your internet availability.</p>
             <a href="/courses/" class="all-courses">Browse All Courses</a>
         </div>
         <div>
-            <img src="/static/images/header.webp" class="hero-image"  alt="">
+            <img src="/static/images/header.jpg" class="hero-image"  alt="">
         </div>
     </div>
 </section>
@@ -257,31 +266,33 @@
 <section id="features">
     <div class="features-grid">
         <div class="feature-content">
+            <h2 class="feature-heading">Key Features</h2>
             <div class="cards-grid">
                 <div class="card">
-                    <img src="" alt="icon" class="icon">
-                    <h2>Feature 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                    <img src="{% static '/images/icons/offline.svg' %}" alt="Offline Access" class="icon">
+                    <h2>Offline Access</h2>
+                    <p>Download courses and study offline, ensuring uninterrupted learning anytime, anywhere.</p>
                 </div>
                 <div class="card">
-                    <img src="" alt="icon" class="icon">
-                    <h2>Feature 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                    <img src="{% static 'images/icons/learning.svg' %}" alt="Localized Content" class="icon">
+                    <h2>Localized Content</h2>
+                    <p>Courses tailored to the African context, providing culturally relevant and impactful education.</p>
                 </div>
                 <div class="card">
-                    <img src="" alt="icon" class="icon">
-                    <h2>Feature 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                    <img src="{% static 'images/icons/content.svg' %}" alt="Adaptive Learning" class="icon">
+                    <h2>Adaptive Learning</h2>
+                    <p>Personalized learning paths that adapt to individual progress and learning styles for better outcomes.</p>
                 </div>
                 <div class="card">
-                    <img src="" alt="icon" class="icon">
-                    <h2>Feature 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, saepe.</p>
+                    <img src="{% static 'images/icons/pricetag.svg' %}" alt="Affordable Pricing" class="icon">
+                    <h2>Affordable Pricing</h2>
+                    <p>Flexible pricing options and subscriptions designed to make quality education accessible to all.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section id="cta">
     <div class="cta-content">
@@ -305,8 +316,7 @@
             <div class="footer-contact">
                 <h3>Contact Us</h3>
                 <p>Email: <a href="mailto:support@edulink.com">support@edulink.co.za</a></p>
-                <p>Phone: <a href="tel:+1234567890">+123 456 7890</a></p>
-                <p>Address: Pretoria, South Africa</p>
+                <p>Location: Pretoria, South Africa</p>
             </div>
         </div>
         <p class="footer-bottom">&copy; {{ current_year }} Edulink E-Learning. All rights reserved.</p>
