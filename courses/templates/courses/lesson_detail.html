@@ -59,7 +59,7 @@
         }
         .resource-heading {
             color: #1f2937;
-            margin: 0;
+            margin: 0.5rem 0;
             font-size: 1.25em;
             font-weight: 600;
         }
@@ -120,7 +120,7 @@
                 <li>
                     <h3 class="resource-heading">{{ chapter.title }}</h3>
                     <p>{{ chapter.text_content }}</p>
-                    
+
                     <!-- Display YouTube video if available -->
                     {% if chapter.video_url %}
                         <div class="video-container">

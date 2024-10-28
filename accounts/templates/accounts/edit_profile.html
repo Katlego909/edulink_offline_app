@@ -1,4 +1,4 @@
-<!-- accounts/templates/accounts/edit_profile.html -->
+{% extends "core/base.html" %}
 
 {% block content %}
 
@@ -8,17 +8,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif; /* Use a clean, readable font */
+            background-color: #f8f9fa; /* Light background for contrast */
+            color: #343a40; /* Darker text color for readability */
+        }
+
+        .profile-container {
+            max-width: 600px; /* Limit the width for better readability */
+            margin: 2rem auto; /* Center the container */
+            padding: 2rem; /* Add padding */
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        h1 {
+            margin-bottom: 1.5rem; /* Spacing below the heading */
+            font-size: 1.8rem; /* Larger heading size */
+            text-align: center; /* Center the heading */
+        }
+
+        .profile-form {
+            display: flex; /* Flexbox for form layout */
+            flex-direction: column; /* Stack the form elements */
+        }
+
+        .profile-form p {
+            margin-bottom: 1rem; /* Space between form fields */
+        }
+
+        .btn-save {
+            padding: 0.75rem; /* Add padding to the button */
+            background-color: #007bff; /* Primary button color */
+            color: #ffffff; /* Button text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer on hover */
+            transition: background-color 0.3s ease; /* Smooth background change */
+        }
+
+        .btn-save:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        .cancel-link {
+            margin-top: 1rem; /* Space above the cancel link */
+            display: block; /* Block display for full width */
+            text-align: center; /* Center the link */
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease; /* Smooth color change */
+        }
+
+        .cancel-link:hover {
+            color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Edit Profile</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Render the form fields -->
-        <button type="submit">Save Changes</button>
-    </form>
-    <a href="{% url 'profile' %}">Cancel</a>  <!-- Link back to profile -->
+    <div class="profile-container">
+        <h1>Edit Profile</h1>
+        <form method="POST" class="profile-form">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Render the form fields -->
+            <button type="submit" class="btn btn-save">Save Changes</button>
+        </form>
+        <a href="{% url 'profile' %}" class="cancel-link">Cancel</a>  <!-- Link back to profile -->
+    </div>
 </body>
 </html>
 
 {% endblock content %}
-
