@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # Add social account providers if needed
     # 'allauth.socialaccount.providers.google',
+
 ]
 
 # Set the site ID for allauth

@@ -1,8 +1,10 @@
 from pyexpat.errors import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Course, CourseProgress, Enrollment, Lesson
-from django.db.models import Q  # Import Q from django.db.models
+from .models import Category, Chapter, Course, CourseProgress, Enrollment, Lesson
+from django.db.models import Q 
+from rest_framework import viewsets
+from .serializers import CategorySerializer, CourseSerializer, LessonSerializer, ChapterSerializer, EnrollmentSerializer, CourseProgressSerializer
 
 
 def course_list(request):
@@ -70,3 +72,31 @@ def mark_course_complete(request, course_id):
     progress.save()
 
     return redirect('course_detail', course_id=course_id)
+
+
+# API Data
+
+
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CourseViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+class LessonViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Lesson.objects.all()
+    serializer_class = LessonSerializer
+
+class ChapterViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
+
+class EnrollmentViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Enrollment.objects.all()
+    serializer_class = EnrollmentSerializer
+
+class CourseProgressViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CourseProgress.objects.all()
+    serializer_class = CourseProgressSerializer
