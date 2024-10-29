@@ -4,58 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {% block title %}{% endblock title %}Edulink E-learning</title>
+    <title>{% block title %}{% endblock title %}Edulink E-learning</title>
     <link rel="manifest" href="{% static 'manifest.json' %}">
     <link rel="stylesheet" href="/static/css/styles.css">
     <script>
         if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/static/sw.js') // Adjust the path to your service worker
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Service Worker registration failed:', error);
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
             });
-    });
-}
+        }
     </script>
 
+    <style>
+        /* Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: Arial, sans-serif;
+        }
+    
+        .header {
+            background-color: #efefef;
+            padding: 10px 0;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensures it stays above other content when scrolling */
+        }
+    
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+        
+        .hamburger {
+            display: none;
+        }
+    
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        .logo-img {
+            width: 120px;
+        }
+    
+        .nav-links,
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+    
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links,
+            .buttons {
+                display: none;
+            }
+    
+            .nav {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+    
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+            }
+    
+            .nav-links.active,
+            .buttons.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: #ccc;
+                padding: 10px;
+                gap: 10px;
+                z-index: 1000;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <div class="header">
         <div class="container">
-
-        <div class="nav">
+            <div class="nav">
                 <div class="logo">
                     <a href="{% url 'home' %}">
-                        <img src="/static/images/logo.svg" class="logo-img" alt="">
+                        <img src="/static/images/logo.svg" class="logo-img" alt="Edulink Logo">
                     </a>
                 </div>
-
+                <div class="hamburger" onclick="toggleMenu()">&#9776;</div> <!-- Hamburger Menu Icon -->
+                
                 <div class="nav-links">
-                        <a href="{% url 'course_list' %}">All Courses</a>
+                    <a href="{% url 'course_list' %}">All Courses</a>
                 </div> 
 
                 <div class="buttons">
-    
                     {% if request.user.is_authenticated %}
-    
-                        <a href="{% url 'profile' %}" class="btn btn-courses">Profile</a>
+                        <a href="{% url 'profile' %}" class="btn btn-profile">Profile</a>
                         <a href="{% url 'logout' %}" class="btn btn-logout">Logout</a>
-    
                     {% else %}
-    
-                        <a href="{% url 'signin' %}" class="btn btn-login" >Login</a>
-    
+                        <a href="{% url 'signin' %}" class="btn btn-login">Login</a>
                     {% endif %}
-    
-                        {% comment %}             
-                        <form action="{% url 'logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Logout</button>
-                        </form> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -63,9 +131,14 @@
 
     <div class="container">
         {% block content %}
-        {% endblock  %}
+        {% endblock %}
     </div>
 
-    
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.buttons').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
